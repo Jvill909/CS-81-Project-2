@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <title>CS81 - Assignment2</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body onload="onDocumentLoaded()">
+        <div>
+            <h2>Assignment 2</h2>
+            <h3>Instructions</h3>
+            <ul>
+                <li>Create a file assignment2.js and put it in the same folder as this HTML page.</li>
+                <li>Implement a <code>function convert(isFtoC, from, to)</code></li>
+                <li>Call <code>show(value)</code> to show a <code>value</code> to the HTML page</li>
+            </ul>
+            <h2>Degree Converter</h2>
+            <table>
+                <tr>
+                    <td></td>
+                    <td>
+                        <select id="convert">
+                            <option value="celsius">Fahrenheit to Celsius</option>
+                            <option value="fahrenheit">Celsius to Fahrenheit</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Enter a Range</label>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>From: </label>
+                    </td>
+                    <td>
+                        <input id="from" type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>To: </label>
+                    </td>
+                    <td>
+                        <input id="to" type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button id="btnConvert">Convert</button>
+                    </td>
+                </tr>
+            </table>
+            <ul id="output"></ul>
+        </div>
+        <script type="text/javascript">
+            function onDocumentLoaded() {
+                let input = document.getElementById("btnConvert");
+                input.addEventListener("click", (event) => {
+                    let s = document.getElementById("convert");
+                    let value = s.options[s.selectedIndex].value;
+                    console.log(value);
+                    let toCelcius = (value === "celsius");
+                    let from = document.getElementById("from").value;
+                    if (isNaN(from)) {
+                        return;
+                    }
+                    let to = document.getElementById("to").value;
+                    if (isNaN(to)) {
+                        return;
+                    }
+                    let output = document.getElementById("output");
+                    output.innerHTML = "";
+                    convert(toCelcius, from, to)
+                });
+            }
+            function show(str) {
+                let output = document.getElementById("output");
+                let li = document.createElement("li");
+                li.appendChild(document.createTextNode(str));
+                output.appendChild(li);
+            }
+        </script>
+        <script src="assignment2.js"></script>
+    </body>
+</html>
